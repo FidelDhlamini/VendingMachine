@@ -75,7 +75,7 @@ public class OverloadedVendingMachine {
     }
 
     public static void main(String[] args) {
-        
+
 
     }
 
