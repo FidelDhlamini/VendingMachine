@@ -6,14 +6,14 @@ import vending.product.SaltySnack;
 import vending.product.SoftDrink;
 
 public class OverloadedVendingMachine {
-    private int softdrinkQty = 0;
-    private int chocolateQty = 10;
-    private int saltySnackQty = 6;
+    private int softdrinkQty;
+    private int chocolateQty;
+    private int saltySnackQty;
 
 
 
 
-    void buy(SoftDrink softdrink){
+    public void buy(SoftDrink softdrink){
         if (softdrinkQty > 0) {
             softdrinkQty--;
         }else {
@@ -21,7 +21,7 @@ public class OverloadedVendingMachine {
         }
 
     }
-   void buy(SaltySnack saltySnack){
+   public void buy(SaltySnack saltySnack){
         if (softdrinkQty > 0) {
             saltySnackQty--;
         }else {
@@ -29,10 +29,10 @@ public class OverloadedVendingMachine {
         }
     }
 
-    void buy(Chocolate chocolate){
+    public void buy(Chocolate chocolate){
         chocolateQty --;
     }
-    void buy(Product product){
+    public void buy(Product product){
         if (softdrinkQty > 0) {
             softdrinkQty -= 3;
             saltySnackQty -= 3;
@@ -41,41 +41,57 @@ public class OverloadedVendingMachine {
             System.out.println("Out of stock");
         }
     }
+    OverloadedVendingMachine(int softDrinkLvl, int saltySnacksLvl, int chocolatesLvl){
+        // set the stockLevel instance variables for each product in the constructor
+          softdrinkQty = softDrinkLvl;
+          saltySnackQty = saltySnacksLvl;
+          chocolateQty = chocolatesLvl;
+    }
 
 
-    void addStock(SoftDrink softdrink){
+    public void addStock(SoftDrink softdrink){
         softdrinkQty += 1;
 
     }
-    void addStock(SaltySnack saltySnack){
+   public void addStock(SaltySnack saltySnack){
         saltySnackQty += 1;
     }
-    void addStock(Chocolate chocolate){
+   public void addStock(Chocolate chocolate){
         chocolateQty += 1;
     }
-    void addStock(Product product){
+   public void addStock(Product product){
         softdrinkQty += 1;
         saltySnackQty += 1;
         chocolateQty += 1;
     }
 
 
-    int getStock(SoftDrink softdrink){
+    public int getStock(SoftDrink softdrink){
        return softdrinkQty;
     }
-    int getStock(SaltySnack saltySnack){
+    public int getStock(SaltySnack saltySnack){
         return saltySnackQty;
     }
-    int getStock(Chocolate chocolate){
+   public int getStock(Chocolate chocolate){
         return chocolateQty;
     }
-    int getStock(){
+    public int getStock(){
         return chocolateQty + softdrinkQty + softdrinkQty;
 
     }
 
     public static void main(String[] args) {
+        OverloadedVendingMachine vendingMach = new OverloadedVendingMachine(4,6,10);
+        vendingMach.addStock(new SaltySnack());
+        vendingMach.getStock(new SaltySnack());
+        vendingMach.buy(new SaltySnack());
+        vendingMach.buy(new SaltySnack());
+        vendingMach.buy(new SaltySnack());
+        vendingMach.buy(new Chocolate());
+        System.out.println(vendingMach.getStock(new SaltySnack()));
+        System.out.println(vendingMach.getStock(new Chocolate()));
 
+        
 
     }
 
